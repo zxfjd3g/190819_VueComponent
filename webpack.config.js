@@ -68,11 +68,15 @@ module.exports = {
         test: /\.png|jpe?g|gif|svg$/,
         // loader: 'file-loader', // 不会进行小图片的base64处理
         // url-loader内部会使用file-loader
-        loader: 'url-loader', // 会进行小图片的base64处理
-        options: {
-          limit: 1 * 1024,  // 小于10k的图片就进行base64处理
-          name: 'static/img/[name].[hash:7].[ext]' // 相对于output.path
-        }
+        use: [
+          {
+            loader: 'url-loader', // 会进行小图片的base64处理
+            options: {
+              limit: 1 * 1024,  // 小于10k的图片就进行base64处理
+              name: 'static/img/[name].[hash:7].[ext]' // 相对于output.path
+            }
+          }
+        ]
       }
     ]
   },
