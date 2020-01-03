@@ -33,18 +33,18 @@
 
 
 ## 5. 说几个webpack中常用的工具包?
-  webpack-dev-server
-  babel-loader
-  css-loader
-  style-loader
-  file-loader
-  url-loader
-  html-webpack-plugin
-  clean-webpack-plugin
+    webpack-dev-server
+    babel-loader
+    css-loader
+    style-loader
+    file-loader
+    url-loader
+    html-webpack-plugin
+    clean-webpack-plugin
 
 ## 6. 区别babel的plugin(插件)与preset(预设)?
-  babel本身不能编译ES6的语法
-  babel需要基于它的plugin来做ES语法的编译
-  每个语法都一个对应的babel plugin包来编译对应的语法
-  一个babel preset包是包含多个常用的babel plugin的集合包
-  有什么好处: 便于下载配置
+    babel本身不能编译ES6的语法
+    babel需要基于它的plugin来做ES语法的编译
+    每个语法都一个对应的babel plugin包来编译对应的语法
+    一个babel preset包是包含多个常用的babel plugin的集合包
+    有什么好处: 便于下载配置
