@@ -109,7 +109,10 @@ module.exports = {
       // 'vue$': 'vue/dist/vue.esm.js',  // 表示精准匹配
     },
     extensions: ['.js', '.vue'], // 指定哪些后缀的模块可以省略后缀
-  }
+  },
+
+  // 开启source-map
+  devtool: 'cheap-module-eval-source-map',
 }
 
 /* 

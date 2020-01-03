@@ -3,7 +3,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <Header :addTodo="addTodo"/>
-      <List :todos="todos" :deleteTodo="deleteTodo"/>
+      <List :todos="todos" :deleteTodo="deleteTodo" :updateTodo="updateTodo"/>
       <Footer :todos="todos" :checkAllTodos="checkAllTodos" 
         :clearCompleteTodos="clearCompleteTodos"/>
     </div>
@@ -14,6 +14,8 @@
   import Header from './components/Header'
   import List from '@comps/List'
   import Footer from '@comps/Footer'
+  import { saveTodos, getTodos } from './utils/storageUtils'
+  // import * as storageUtils from './utils/storageUtils'
   
   export default { 
     // name: 'App',
@@ -28,7 +30,7 @@
       setTimeout(() => {
         // 从local中读取todos_key对应的数据
         // this.todos = JSON.parse(localStorage.getItem('todos_key')) || [] // 如果没有存值, 返回的null
-        this.todos = JSON.parse(localStorage.getItem('todos_key') || '[]') // 如果没有存值, 返回的null
+        this.todos = getTodos() // 如果没有存值, 返回的null
       }, 1000);
     },
 
@@ -47,16 +49,22 @@
 
       clearCompleteTodos () {
         this.todos = this.todos.filter(todo => !todo.complete)
+      },
+
+      updateTodo (todo, isCheck) {
+        todo.complete = isCheck
       }
     },
 
     watch: {
       todos: {
         deep: true, // 深度监视
-        handler (value) { // value是最新的todos
-          // 保存最新的todos到local, 必须以json形式
-          localStorage.setItem('todos_key', JSON.stringify(value))
-        }
+        // handler: function (value) { // value是最新的todos
+        //   // 保存最新的todos到local, 必须以json形式
+        //   // localStorage.setItem('todos_key', JSON.stringify(value))
+        //   saveTodos(value)
+        // }
+        handler: saveTodos
       }
     },
 
@@ -67,6 +75,19 @@
     }
 
   }
+
+/* 
+  const obj = {
+    fn (a) {
+      // 处理事件
+    }
+  }
+
+  div.onclick = function (event) {
+    obj.fn(event)
+  }
+  div.onclick = obj.fn
+ */
 </script>
 
 <style scoped>
