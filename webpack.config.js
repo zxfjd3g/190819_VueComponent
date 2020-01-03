@@ -106,7 +106,7 @@ module.exports = {
     alias: { // 模块路径别名
       '@': resolve('src'),  
       '@comps': resolve('src/components'),  
-      // 'vue$': 'vue/dist/vue.esm.js',  // 表示精准匹配
+      // 'vue$': 'vue/dist/vue.esm.js',  // 指定引入vue的哪个打包文件
     },
     extensions: ['.js', '.vue'], // 指定哪些后缀的模块可以省略后缀
   },
