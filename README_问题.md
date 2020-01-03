@@ -5,17 +5,18 @@
   2). 单文件组件: xxx.vue
       模板编写有提示/也比较直观
       需要先编译好后才能运行
+
 ## 2. 区别webpack和webpack-cli?
   1). webpack: 打包/编译代码的
   2). webpack-cli: 提供启动打包程序的命令 webpack命令
 
 ## 3. webpack的几个基本配置项?
-  0). mode
-  1). entry
-  2). output
-  3). module & rules
-  4). plugins
-  5). devServer
+  1). mode
+  2). entry
+  3). output
+  4). module & rules
+  5). plugins
+  6). devServer
 
 ## 4. 区别webpack的开发环境与生产环境?
   1). 开发环境运行: 
@@ -48,3 +49,15 @@
     每个语法都一个对应的babel plugin包来编译对应的语法
     一个babel preset包是包含多个常用的babel plugin的集合包
     有什么好处: 便于下载配置
+
+## 7. webpack的resolve配置能做什么?
+
+## 8. 如何配置vue单文件组件开发的环境?
+
+## 9. 自定义vue开发环境有没有遇到过什么问题?
+
+## 10. 组件化开发的基本流程和2个重要问题?
+
+## 11. 模板中需要显示的数据来源有哪3个?
+
+## 12. 列出 vue 常用的配置选项?
