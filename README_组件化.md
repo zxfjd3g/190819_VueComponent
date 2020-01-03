@@ -1,5 +1,17 @@
 ## 0. 组件基础
-
+  1). 定义组件
+    Vue.component('BlogPost', {
+      props: ['author']  // propTypes
+      data () {
+        return {
+          title: 'xxxx'
+        }
+      },
+      template: '<div>{{title}}</div>'
+    })
+  2). 使用
+    <BlogPost />
+    <blog-post/>
 
 ## 1. vue单文件组件
     <template>
