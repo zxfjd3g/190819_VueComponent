@@ -4,4 +4,5 @@
     3). webpack的几个基本配置项?
     4). 区别webpack的开发环境与生产环境?
     5). 说几个webpack中常用的工具包?
+    6). 区别babel的plugin与preset?
 

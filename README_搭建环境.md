@@ -220,12 +220,3 @@
     output: publicPath: '/', // 引入打包的文件时路径以/开头
 
 
-babel本身不编译ES6的语法
-
-babel需要基于它的plugin来做ES语法的编译
-
-每个语法都一个对应的babel plugin来编译对应的语法
-
-一个babel preset包是包含多个常用的babel plugin的集合包
-
-有什么好处: 便于管理配置
