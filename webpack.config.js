@@ -96,6 +96,20 @@ module.exports = {
     open: true, // 自动打开浏览器
     quiet: true, // 不做太多日志输出
   },
+
+  // 模块引入解析
+  resolve: {
+    /* 
+    1. 简化模块路径的编写
+    2. 加快打包速度
+    */
+    alias: { // 模块路径别名
+      '@': resolve('src'),  
+      '@comps': resolve('src/components'),  
+      // 'vue$': 'vue/dist/vue.esm.js',  // 表示精准匹配
+    },
+    extensions: ['.js', '.vue'], // 指定哪些后缀的模块可以省略后缀
+  }
 }
 
 /* 
