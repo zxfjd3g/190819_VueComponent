@@ -1,17 +1,52 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox"/>
+      <input type="checkbox" v-model="isCheckAll"/>
     </label>
     <span>
-      <span>已完成0</span> / 全部2
+      <span>已完成{{completeSize}}</span> / 全部{{todos.length}}
     </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <button class="btn btn-danger" v-show="completeSize>0" @click="clearCompleteTodos">清除已完成任务</button>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  /* 
+  模板数据的来源?
+  1. data: 自身可变数据
+  2. props: 从外部接收的可变数据
+  3. computed: 根据已有的data或props数据进行计算产生的数据
+  */
   export default {
+    props: {
+      todos: Array,
+      checkAllTodos: Function,
+      clearCompleteTodos: Function
+    },
+
+    computed: {
+      completeSize () {
+        /* reduce(): 根据数组中元素进行统计(累计/累加)处理
+        const arr = [1, 3, 4, 5, 7]
+        const total = arr.reduce((preTotal, item) => preTotal + (item%2===1 ? item : 0), 0)
+        let result = 0
+        arr.forEach(item => {
+          result += item
+        }) */
+
+        return this.todos.reduce((pre, todo) => pre + (todo.complete ? 1 : 0), 0)
+      },
+
+      isCheckAll: {
+        get () {
+          return this.todos.length === this.completeSize &&  this.completeSize>0// 不能直接completeSize()
+        },
+        set (value) { // 操作checkbox   value代表当前勾选的状态
+          // 对todos进行全选/全不选
+          this.checkAllTodos(value)
+        }
+      }
+    }
   }
 </script>
 

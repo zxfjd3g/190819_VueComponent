@@ -4,7 +4,8 @@
     <div class="todo-wrap">
       <Header :addTodo="addTodo"/>
       <List :todos="todos" :deleteTodo="deleteTodo"/>
-      <Footer/>
+      <Footer :todos="todos" :checkAllTodos="checkAllTodos" 
+        :clearCompleteTodos="clearCompleteTodos"/>
     </div>
   </div>
 </template>
@@ -18,12 +19,17 @@
     // name: 'App',
     data () {
       return {
-        todos: [
-          {id: 1, title: 'A', complete: false},
-          {id: 2, title: 'B', complete: true},
-          {id: 4, title: 'C', complete: false},
-        ]
+        todos: []
       }
+    },
+
+    mounted () {
+      // 模拟异步加载
+      setTimeout(() => {
+        // 从local中读取todos_key对应的数据
+        // this.todos = JSON.parse(localStorage.getItem('todos_key')) || [] // 如果没有存值, 返回的null
+        this.todos = JSON.parse(localStorage.getItem('todos_key') || '[]') // 如果没有存值, 返回的null
+      }, 1000);
     },
 
     methods: { // 所有的方法都会成为组件对象的方法
@@ -32,6 +38,25 @@
       },
       deleteTodo (index) {
         this.todos.splice(index, 1)
+      },
+
+      /* 对所有todos进行全选/全不选 */
+      checkAllTodos (isCheck) {
+        this.todos.forEach(todo => todo.complete = isCheck)
+      },
+
+      clearCompleteTodos () {
+        this.todos = this.todos.filter(todo => !todo.complete)
+      }
+    },
+
+    watch: {
+      todos: {
+        deep: true, // 深度监视
+        handler (value) { // value是最新的todos
+          // 保存最新的todos到local, 必须以json形式
+          localStorage.setItem('todos_key', JSON.stringify(value))
+        }
       }
     },
 
