@@ -51,13 +51,57 @@
     有什么好处: 便于下载配置
 
 ## 7. webpack的resolve配置能做什么?
+    extends: 指定可以省略的模块文件后缀名
+    alias: 引入模块的路径别名  ==> 简化编码 / 加快打包
 
 ## 8. 如何配置vue单文件组件开发的环境?
+    下载包: vue / vue-loader / vue-template-compiler
+    配置:
+        vue-loader
+        VueLoaderPlugin
+        vue-style-loader
 
 ## 9. 自定义vue开发环境有没有遇到过什么问题?
+    编码:
+        components: {App},
+        template: '<App/>'
+    问题: 运行报错, 提示当前使用vue版本只是一个运行时版本, 不带模板编译器
+    原因:
+        template的编译需要使用vue的编译模板的代码
+        它没有使用vue-template-compiler包
+    解决:
+        办法1: 配置指定使用vue带编译器的版本, resolve.alias                    vue-cli2
+        办法2: 编码使用render  (内部使用vue-template-compiler包进行预编译模板)   vue-cli3
+    哪种办法更好: 办法2
+        打包文件更小
+
 
 ## 10. 组件化开发的基本流程和2个重要问题?
+    拆分组件: 拆分界面, 定义组件
+    静态组件: 使用组件搭建静态界面
+    动态组件:
+        初始化动态显示
+        交互: 与用户/后台
+    2个重要问题?
+        数据定义在哪个组件?  哪个组件需要还是哪些组件
+        更新数据的方法定义在哪个组件? 数据在哪个组件方法就定义在哪个组件
+    设计数据的3个问题?
+        类型
+        名称 
+        在哪个组件
 
 ## 11. 模板中需要显示的数据来源有哪3个?
+    data: 自身可变数据
+    props: 外部(父组件)传入的数据
+    computed: 根据已有data/props/其它的computed进行计算产生的可变数据
 
 ## 12. 列出 vue 常用的配置选项?
+    el
+    data
+    props
+    computed
+    watch
+    methods
+    filters
+    directives
+    components
