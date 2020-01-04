@@ -1,6 +1,7 @@
 {
   "name": "vue-component",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development"

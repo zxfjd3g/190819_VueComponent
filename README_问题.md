@@ -105,3 +105,17 @@
     filters
     directives
     components
+
+## 组件间的关系
+    父子: 父 ==> 子  / 子 ==> 父
+    祖孙: 祖 ==> 孙  /  孙 ==> 祖 
+    兄弟
+    其它
+
+## 事件处理的理解
+    1). 绑定事件监听
+        事件名
+        回调函数: function (event) {}
+    2). 分发事件 (distpatch/emit event)
+        事件名
+        数据: event对象

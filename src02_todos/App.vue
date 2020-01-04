@@ -2,9 +2,7 @@
 <!-- 组件模板中找数据: 找组件对象(小的vm对象) -->
   <div class="todo-container">
     <div class="todo-wrap">
-      <!-- <Header :addTodo="addTodo"/> -->
-      <!-- <Header @addTodo2="addTodo"/> -->
-      <Header ref="header"/>
+      <Header :addTodo="addTodo"/>
       <List :todos="todos" :deleteTodo="deleteTodo" :updateTodo="updateTodo"/>
       <Footer :todos="todos" :checkAllTodos="checkAllTodos" 
         :clearCompleteTodos="clearCompleteTodos"/>
@@ -28,21 +26,12 @@
     },
 
     mounted () {
-      // 给<Header>组件对象绑定自定义事件监听
-      /* 要求: 绑定自定义事件监听和分发事件的组件对象得是同一个 */
-      this.$refs.header.$on('addTodo2', this.addTodo)
-
       // 模拟异步加载
       setTimeout(() => {
         // 从local中读取todos_key对应的数据
         // this.todos = JSON.parse(localStorage.getItem('todos_key')) || [] // 如果没有存值, 返回的null
         this.todos = getTodos() // 如果没有存值, 返回的null
       }, 1000);
-    },
-
-    beforeDestroy () {
-      // 解绑自定义事件监听
-      this.$refs.header.$off('addTodo2')
     },
 
     methods: { // 所有的方法都会成为组件对象的方法

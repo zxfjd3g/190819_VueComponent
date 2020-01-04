@@ -8,10 +8,10 @@
 <script type="text/ecmascript-6">
   export default {
     props: { // 限定了:属性的名称/属性值的类型/属性的必要性
-      /* addTodo: { 
+      addTodo: { 
         type: Function,
         required: true
-      } */
+      }
     },
     data () {
       return {
@@ -32,10 +32,7 @@
           title,
         }
         // 2. 添加todo
-        // this.addTodo(todo)
-        // 分发自定义事件: addTodo2
-        this.$emit('addTodo2', todo)
-
+        this.addTodo(todo)
         // 3. 清除输入
         this.title = ''
       }
