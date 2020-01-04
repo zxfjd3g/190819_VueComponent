@@ -1,126 +1,51 @@
 <template>
-<!-- 组件模板中找数据: 找组件对象(小的vm对象) -->
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <!-- <Header :addTodo="addTodo"/> -->
-      <!-- <Header @addTodo2="addTodo"/> -->
-      <Header ref="header"/>
-      <List :todos="todos" :updateTodo="updateTodo"/>
-      <Footer :todos="todos" :checkAllTodos="checkAllTodos" 
-        :clearCompleteTodos="clearCompleteTodos"/>
-    </div>
+  <div>
+    <div v-if="!repoName">loading...</div>
+    <div v-else>moast star repo is <a :href="repoUrl">{{repoName}}</a></div>
   </div>
 </template>
 
 <script>
-  import Header from './components/Header'
-  import List from '@comps/List'
-  import Footer from '@comps/Footer'
-  import { saveTodos, getTodos } from './utils/storageUtils'
-  // import * as storageUtils from './utils/storageUtils'
-  
+  import axios from 'axios'
+
   export default { 
-    // name: 'App',
     data () {
-
       return {
-        todos: []
+        repoName: '',
+        repoUrl: ''
       }
-    },
-
-    beforeCreate () {
-      this.__proto__.aaa = 1
-      this.__proto__.__proto__.bbb = 2
     },
 
     mounted () {
-      console.log('mounted()', this)
-
-      // 通过$globalEventBus来绑定自定义事件监听
-      this.$globalEventBus.$on('deleteTodo', this.deleteTodo)
-
-      // 给<Header>组件对象绑定自定义事件监听
-      /* 要求: 绑定自定义事件监听和分发事件的组件对象得是同一个 */
-      this.$refs.header.$on('addTodo2', this.addTodo)
-
-      // 模拟异步加载
-      setTimeout(() => {
-        // 从local中读取todos_key对应的数据
-        // this.todos = JSON.parse(localStorage.getItem('todos_key')) || [] // 如果没有存值, 返回的null
-        this.todos = getTodos() // 如果没有存值, 返回的null
-      }, 1000);
-    },
-
-    beforeDestroy () {
-      // 解绑自定义事件监听
-      this.$refs.header.$off('addTodo2')
-      this.$globalEventBus.$off('deleteTodo')
-    },
-
-    methods: { // 所有的方法都会成为组件对象的方法
-      addTodo (todo) {
-        this.todos.unshift(todo)
-      },
-      deleteTodo (index) {
-        this.todos.splice(index, 1)
-      },
-
-      /* 对所有todos进行全选/全不选 */
-      checkAllTodos (isCheck) {
-        this.todos.forEach(todo => todo.complete = isCheck)
-      },
-
-      clearCompleteTodos () {
-        this.todos = this.todos.filter(todo => !todo.complete)
-      },
-
-      updateTodo (todo, isCheck) {
-        todo.complete = isCheck
-      }
-    },
-
-    watch: {
-      todos: {
-        deep: true, // 深度监视
-        // handler: function (value) { // value是最新的todos
-        //   // 保存最新的todos到local, 必须以json形式
-        //   // localStorage.setItem('todos_key', JSON.stringify(value))
-        //   saveTodos(value)
-        // }
-        handler: saveTodos
-      }
-    },
-
-    components: { // 局部注册组件, 只能在当前组件使用
-      Header,
-      List,
-      Footer
-    }
-
-  }
-
-/* 
-  const obj = {
-    fn (a) {
-      // 处理事件
+      // 使用vue-resource发ajax请求
+      /* this.$http.get('https://api.github.com/search/repositories2?q=j&sort=stars')
+        .then(response => {
+          const result = response.data
+          const {name, html_url} = result.items[0]
+          // 更新数据
+          this.repoName = name
+          this.repoUrl = html_url
+        })
+        .catch(error => {
+          alert('请求出错')
+        }) */
+      // 使用axios发ajax请求
+      // axios.get('http://localhost:4000/repositories/vue')
+      axios.get('/api/repositories/vue') // 转发http://localhost:4000/api/repositories/vue
+        .then(response => {
+          const result = response.data   // {status: 0, data: {name, html_url}}
+          const {name, html_url} = result.data
+          // 更新数据
+          this.repoName = name
+          this.repoUrl = html_url
+        })
+        .catch(error => {
+          alert('请求出错2222')
+        })
     }
   }
-
-  div.onclick = function (event) {
-    obj.fn(event)
-  }
-  div.onclick = obj.fn
- */
 </script>
 
 <style scoped>
-  .todo-container {
-    width: 600px;
-    margin: 0 auto;
-  }
-  .todo-container .todo-wrap {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+
 </style>

@@ -95,6 +95,20 @@ module.exports = {
     port: 8081, // 端口号
     open: true, // 自动打开浏览器
     quiet: true, // 不做太多日志输出
+    // 配置代理
+    proxy: { // http:/localhost:8081/api/xxx
+      // '/api': 'http://localhost:4000'     // http:/localhost:4000/api/xxx
+      '/api': { // 匹配处理以/api开头的请求
+        target: 'http://localhost:4000',  // 转发的目标地址
+        pathRewrite: {'^/api' : ''}, // 在转发请求前去除路径中的/api   // http:/localhost:4000/xxx
+        changeOrigin: true, // 支持协议名的跨域
+      },
+      '/3000': { // 匹配处理以/3000开头的请求
+        target: 'http://localhost:3000',  // 转发的目标地址
+        pathRewrite: {'^/3000' : ''}, // 在转发请求前去除路径中的/3000
+        changeOrigin: true, // 支持协议名的跨域
+      },
+    }
   },
 
   // 模块引入解析
