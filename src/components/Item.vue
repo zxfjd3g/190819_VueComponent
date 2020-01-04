@@ -14,7 +14,6 @@
     // 声明接收属性: 指定属性名/属性值的类型
     props: {
       todo: Object,
-      deleteTodo: Function,
       index: Number,
       updateTodo: Function
     },
@@ -50,7 +49,9 @@
 
       confirmDelete () {
         if (confirm('确定删除吗?')) {
-          this.deleteTodo(this.index)
+          // this.deleteTodo(this.index)
+          // 分发自定义事件: 向目标组件传递数据
+          this.$globalEventBus.$emit('deleteTodo', this.index)
         }
       }
     }

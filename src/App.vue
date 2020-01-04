@@ -5,7 +5,7 @@
       <!-- <Header :addTodo="addTodo"/> -->
       <!-- <Header @addTodo2="addTodo"/> -->
       <Header ref="header"/>
-      <List :todos="todos" :deleteTodo="deleteTodo" :updateTodo="updateTodo"/>
+      <List :todos="todos" :updateTodo="updateTodo"/>
       <Footer :todos="todos" :checkAllTodos="checkAllTodos" 
         :clearCompleteTodos="clearCompleteTodos"/>
     </div>
@@ -22,12 +22,23 @@
   export default { 
     // name: 'App',
     data () {
+
       return {
         todos: []
       }
     },
 
+    beforeCreate () {
+      this.__proto__.aaa = 1
+      this.__proto__.__proto__.bbb = 2
+    },
+
     mounted () {
+      console.log('mounted()', this)
+
+      // 通过$globalEventBus来绑定自定义事件监听
+      this.$globalEventBus.$on('deleteTodo', this.deleteTodo)
+
       // 给<Header>组件对象绑定自定义事件监听
       /* 要求: 绑定自定义事件监听和分发事件的组件对象得是同一个 */
       this.$refs.header.$on('addTodo2', this.addTodo)
@@ -43,6 +54,7 @@
     beforeDestroy () {
       // 解绑自定义事件监听
       this.$refs.header.$off('addTodo2')
+      this.$globalEventBus.$off('deleteTodo')
     },
 
     methods: { // 所有的方法都会成为组件对象的方法

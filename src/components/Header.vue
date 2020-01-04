@@ -18,6 +18,11 @@
         title: ''
       }
     },
+
+    mounted () {
+      console.log('header mounted()', this)
+    },
+
     methods: {
       add () {
         
