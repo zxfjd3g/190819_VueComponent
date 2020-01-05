@@ -203,15 +203,15 @@
         }
 
 
-## ES6的新语法
-  新的语法: const / let / 箭头函数
-  新的API: Map / Promise / arr.map()
-  @babel/preset-env它只能编译新的语法, 不能处理的新的API:
-  可以利用@babel/polyfill来提供新API的实现
-    core-js: 提供es5/es6/es7的新的API的实现
-    regenerator-runtime: es8的async/await
+## ES6+的打包处理
+    新的语法: const / let / 箭头函数 / ...
+    新的API: Map / Promise / arr.map()/...
+    @babel/preset-env它只能编译新的语法, 不能处理的新的API:
+    可以利用@babel/polyfill来提供新API的实现
+        core-js: 提供es5/es6/es7的新的API的实现
+        regenerator-runtime: es8的async/await
 
-## 路由组件对象的生命周期
+## 路由组件对象的创建与销毁
     路由组件对象在访问对应的路由路径时才会创建对象
     从A组件跳转到B组件: 销毁A组件对象, 创建B组件对象
     从B组件再跳转回到A: 销毁B组件对象, 创建A组件对象

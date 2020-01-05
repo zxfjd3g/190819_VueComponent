@@ -35,10 +35,9 @@
 
     methods: {
       show (route) {
-        const that = this
         setTimeout(() => {
           const detail = allDetails.find(detail => route.params.mid * 1 ===detail.id)
-          that.detail = detail
+          this.detail = detail
         }, 1000);
       }
     }

@@ -184,10 +184,10 @@
 
 ## 7. 配置async/await的编译环境
     1). 下载包
-        yarn add @babel/pollfill
+        yarn add @babel/polyfill
     2). 引入
-        import '@babel/pollfill'
-    3). 配置(优化)
+        import '@babel/polyfill'
+    3). 优化: 不引入polyfill包, 配置实现按需引入打包polyfill
         presets: [
           ['@babel/preset-env', {
             useBuiltIns: 'usage',
