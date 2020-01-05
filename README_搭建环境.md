@@ -184,8 +184,10 @@
 
 ## 7. 配置async/await的编译环境
     1). 下载包
-        yarn add @babel/runtime-corejs2
-    2). 配置
+        yarn add @babel/pollfill
+    2). 引入
+        import '@babel/pollfill'
+    3). 配置(优化)
         presets: [
           ['@babel/preset-env', {
             useBuiltIns: 'usage',

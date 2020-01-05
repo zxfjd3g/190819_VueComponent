@@ -107,7 +107,7 @@
     components
 
 ## 13. 事件处理的理解
-    1). DOM事件
+    1). 原生DOM事件
         * 绑定事件监听
             * 事件名(类型): 只有有限的几个, 不能随便写
             * 回调函数
@@ -136,9 +136,9 @@
 ## 15. 如何理解全局事件总线?
     一个对象
     包含一系列事件处理的功能方法
-        on(eventName, listener)
-        emit(eventName, data)
-        off(eventName)
+        绑定事件监听: on(eventName, listener)
+        分发事件: emit(eventName, data)
+        解绑事件监听: off(eventName)
     在vue中利用此vm作为事件总线能实现任意组件间通信
 
 ## 16. 组件间的通信方式有哪些?
@@ -164,7 +164,7 @@
         利用vm对象的$on()/$emit()/$off()
         利用vm对象是组件对象的原型对象
         创建vm对象作为全局事件总线对象保存到Vue的原型对象上, 所有的组件对象都可以直接可见:
-            Vue.prototype.$bus = new Vue()
+            Vue.prototype.$bus = this / new Vue()
             任意组件A可以通过this.$bus.$on()绑定监听接收数据
             任意组件B可以通过this.$bus.$emit()分发事件, 传递数据
     4). slot
@@ -183,6 +183,7 @@
     2). 在什么时候发请求?
         mounted()中
         事件监听回调函数或相关函数中
+
 ## 18. 代理服务器的理解和使用?
     1). 代理服务器
         能对请求进行转发的工具包
@@ -200,3 +201,12 @@
             }
           }
         }
+
+
+ES6的新语法
+  新的语法: const / let / 箭头函数
+  新的API: Map / Promise / arr.map()
+  @babel/preset-env它只能编译新的语法, 不能处理的新的API:
+  可以利用@babel/polyfill来提供新API的实现
+    core-js: 提供es5/es6/es7的新的API的实现
+    regenerator-runtime: es8的async/await
