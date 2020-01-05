@@ -49,8 +49,6 @@
           this.loading  = false
           this.errorMsg = '请求出错: ' + error.message
         })
-        
-        
       })
     }
   }
