@@ -1,39 +1,17 @@
 <template>
-  <div>
-    <p>clicked {{count}} times, count is {{evenOrOdd}}</p>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementIfOdd">incrent if odd</button>
-    <button @click="incrementAsync">increment async</button>
+  <div class="container">
+    <Search/>
+    <Main/>
   </div>
 </template>
 
 <script>
-  export default {
-    
-    computed: {
-      evenOrOdd () {
-        return this.count%2===1 ? '奇数' : '偶数'
-      }
-    },
-
-    methods: {
-      increment () {
-        this.count++
-      },
-      decrement () {
-        this.count--
-      },
-      incrementIfOdd () {
-        if (this.count%2===1) {
-          this.count++
-        }
-      },
-      incrementAsync () {
-        setTimeout(() => {
-          this.count++
-        }, 1000);
-      },
+  import Main from './components/Main'
+  import Search from './components/Search'
+  export default { 
+    components: {
+      Main,
+      Search
     }
   }
 </script>

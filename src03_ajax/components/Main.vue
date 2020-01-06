@@ -27,7 +27,6 @@
     mounted () {
       // 绑定事件监听
       this.$eventBus.$on('search',  async (searchName) => {
-        debugger
         // 更新数据(请求中)
         this.firstView = false
         this.loading = true

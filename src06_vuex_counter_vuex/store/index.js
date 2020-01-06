@@ -15,6 +15,7 @@ const state = {
 
 /* 
 包含n个用于直接更新状态数据的方法的对象
+在action函数中不可以包含逻辑或异步代码
 */
 const mutations = {
   INCREMENT (state) {
@@ -27,15 +28,17 @@ const mutations = {
 
 /* 
 包含n个用于间接更新状态数据的方法的对象
+在action函数中可以包含逻辑或异步代码
 */
 const actions = {
+  /* 
   increment (context) {
     // commit给mutation
     context.commit('INCREMENT')
   },
   decrement ({ commit }) {
     commit('DECREMENT')
-  },
+  }, */
   incrementIfOdd ({ commit, state }) {
     if (state.count %2=== 1) {
       commit('INCREMENT')
@@ -47,7 +50,15 @@ const actions = {
     }, 1000);
   },
 }
-const getters = {}
+
+/* 
+包含n个基于state数据的getter计算属性的方法对象
+*/
+const getters = {
+  evenOrOdd (state) {
+    return state.count%2===1 ? '奇数' : '偶数'
+  }
+}
 
 export default new Vuex.Store({
   state,
