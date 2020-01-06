@@ -33,8 +33,11 @@ export default new VueRouter({
           component: Message,
           children: [
             {
+              name: 'detail',
               path: '/home/message/detail/:mid',
-              component: MessageDetail
+              component: MessageDetail,
+              // props: true  // 将parmas参数映射成props传递给路由组件
+              props: (route) => ({mid: route.params.mid, title: route.query.title})  // 可以映射params和query参数
             }
           ]
         },

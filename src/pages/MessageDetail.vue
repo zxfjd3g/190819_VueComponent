@@ -1,7 +1,9 @@
 <template>
   <ul>
-    <li>ID: {{$route.params.mid}}</li> 
-    <li>Title: {{detail.title}}</li> 
+    <!-- <li>ID: {{$route.params.mid}}</li>  -->
+    <li>ID: {{mid}}</li> 
+    <!-- <li>Title: {{$route.query.title}}</li>  -->
+    <li>Title: {{title}}</li> 
     <li>Content: {{detail.content}}</li>
   </ul>
 </template>
@@ -14,6 +16,7 @@
           {id: 4, title: 'message004', content: 'message content004'},
   ]
   export default {
+    props: ['mid', 'title'],
     data () {
       return {
         detail: {}

@@ -19,7 +19,8 @@
         <div class="panel">
           <div class="panel-body">
             <!-- 在此处显示当前路由组件 -->
-            <router-view></router-view>
+            <router-view msg="abc"></router-view>
+            <!-- 所有它管理的路由组件都能得到接收的msg属性 -->
           </div>
         </div>
       </div>
