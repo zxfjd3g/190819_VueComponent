@@ -18,9 +18,17 @@
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
-            <!-- 在此处显示当前路由组件 -->
-            <router-view msg="abc"></router-view>
-            <!-- 所有它管理的路由组件都能得到接收的msg属性 -->
+            <!-- 
+              默认缓存的是所有对应的路由组件对象
+              通过include/exclude来指定缓存部分组件对象
+            -->
+            <!-- <keep-alive include="About"> -->
+            <keep-alive exclude="Home">
+              <!-- 在此处显示当前路由组件 -->
+              <router-view msg="abc"></router-view>
+              <!-- 所有它管理的路由组件都能得到接收的msg属性 -->
+            </keep-alive>
+            
           </div>
         </div>
       </div>

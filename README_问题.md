@@ -217,4 +217,18 @@
     从B组件再跳转回到A: 销毁B组件对象, 创建A组件对象
     从A组件跳转到A组件(只是改变了参数): A组件对象不会销毁重新创建
 
-    
+## 区别hash与history路由
+    刷新: http://localhost:8081/#/about
+      请求后台: http://localhost:8081/  ==> 返回index.html
+      注意: #/about不会交给服务器
+      浏览器得到index页面后就会得到关联的js
+      js中的路由代码就会将#/about解析为前台路由路径
+
+    刷新: http://localhost:8081/about
+      请求后台: http://localhost:8081/about ==> 后台处理不了, 返回404
+      解决思路: 在某个路由路径下刷新服务器能返回index页面
+      配置: devServer: historyApiFallback: true  //  任意的 404 响应都被替代为 index.html
+
+    http://localhost:8081/home/news  ==> index.html
+    <link rel="stylesheet" href="./static/css/bootstrap.css"> 
+    ==> http://localhost:8081/home/static/css/bootstrap.css

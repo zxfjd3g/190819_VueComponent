@@ -27,7 +27,8 @@ module.exports = {
   // 出口
   output: {
     path: resolve('dist'), // dist的绝对路径   所有打包生成文件的基础路径
-    filename: 'static/js/[name].bundle.js'
+    filename: 'static/js/[name].bundle.js',
+    publicPath: '/', // 生成的引用路径的左边都有一个/
   },
 
   // 模块加载器
@@ -108,7 +109,8 @@ module.exports = {
         pathRewrite: {'^/3000' : ''}, // 在转发请求前去除路径中的/3000
         changeOrigin: true, // 支持协议名的跨域
       },
-    }
+    },
+    historyApiFallback: true, // 请求404时返回index页面
   },
 
   // 模块引入解析
