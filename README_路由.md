@@ -57,13 +57,14 @@
             path: '/home/news/:id/:title',
             component: News
         }
-    跳转: 
-        <router-link to="{name: 'news', params: {id: 1, title: 'abc'}}">
+    跳转:
+        <router-link :to="/home/news/1/abc">
+        <router-link :to="{name: 'news', params: {id: 1, title: 'abc'}}">
         router.push({name: 'news', params: {id: 1, title: 'abc'}})
 
 ## 6. 缓存路由组件
     路由组件对象默认的生命周期: 被切换时就会死亡, 切换回来时重新创建
-    <keep-alive exlude="A,B">
+    <keep-alive exlude="A" include="B">
       <router-view></router-view>
     </keep-alive>
 

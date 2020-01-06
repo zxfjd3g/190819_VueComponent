@@ -29,21 +29,24 @@ module.exports = {
     path: resolve('dist'), // dist的绝对路径   所有打包生成文件的基础路径
     filename: 'static/js/[name].bundle.js',
     publicPath: '/', // 生成的引用路径的左边都有一个/
+    // publicPath: 'https://www.bootcdn.cn/', // 存放了打包资源的一个在线基础url
   },
 
   // 模块加载器
   module: {
     rules: [  // 内部配置loader
+      // 处理vue文件
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader'  // loader内部都有一个处理函数
       },
 
       // 处理ES6 ==> ES5
       {
         test: /\.js$/,  // 处理js文件
         // exclude: /(node_modules|bower_components)/, // 排除匹配的文件夹
-        include: [resolve('src')], // 只对匹配的文件夹处理
+        include: [resolve('src')], // 只对匹配的文件夹处理  ==> 加快打包
+        // use: ['babel-loader'],
         use: {
           loader: 'babel-loader',
           options: {
@@ -138,10 +141,6 @@ module.exports = {
 }
 
 /* 
-理解babel的plugin(插件)与preset(预设)
-    babel本身不能编译ES6的语法
-    babel需要基于它的plugin来做ES语法的编译
-    每个语法都一个对应的babel plugin包来编译对应的语法
-    一个babel preset包是包含多个常用的babel plugin的集合包
-    有什么好处: 便于管理配置
+entry / output / module&rules / plugins
+devSever / devtool / mode / resolve
 */

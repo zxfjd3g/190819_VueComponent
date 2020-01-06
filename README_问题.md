@@ -218,17 +218,36 @@
     从A组件跳转到A组件(只是改变了参数): A组件对象不会销毁重新创建
 
 ## 区别hash与history路由
-    刷新: http://localhost:8081/#/about
-      请求后台: http://localhost:8081/  ==> 返回index.html
-      注意: #/about不会交给服务器
-      浏览器得到index页面后就会得到关联的js
-      js中的路由代码就会将#/about解析为前台路由路径
+    hash刷新: http://localhost:8081/#/about
+        请求后台: http://localhost:8081/  ==> 返回index.html
+        注意: #/about不会交给服务器
+        浏览器得到index页面后就会得到关联的js
+        js中的路由代码就会将#/about解析为前台路由路径
 
-    刷新: http://localhost:8081/about
-      请求后台: http://localhost:8081/about ==> 后台处理不了, 返回404
-      解决思路: 在某个路由路径下刷新服务器能返回index页面
-      配置: devServer: historyApiFallback: true  //  任意的 404 响应都被替代为 index.html
+    history刷新: http://localhost:8081/about
+        请求后台: http://localhost:8081/about ==> 后台处理不了, 返回404
+        解决思路: 在某个路由路径下刷新服务器能返回index页面
+        配置: devServer: historyApiFallback: true  //  任意的 404 响应都被替代为 index.html
 
-    http://localhost:8081/home/news  ==> index.html
-    <link rel="stylesheet" href="./static/css/bootstrap.css"> 
-    ==> http://localhost:8081/home/static/css/bootstrap.css
+## mint-ui按需引入配置异常的问题
+    1). 文档上的配置
+        "plugins": [
+          ["component", [
+            {
+              "libraryName": "mint-ui",
+              "style": true
+            }
+          ]]
+        ]
+    2). 异常信息:  
+        Error: .plugins[0][1] must be an object, false, or undefined
+    3). 原因:
+        文档编写时, 是根据老的babel版本编写的, 新版本的babel配置有变化
+        以前是数组, 现在只能是对象
+    4). 修正:
+        "plugins": [
+          ["component", {
+              "libraryName": "mint-ui",
+              "style": true
+          }]
+        ]
