@@ -1,9 +1,9 @@
 import Vue from 'vue' 
 import App from './App.vue'
-import store from './store'
+import router from './router'
 
 new Vue({
   el: '#root',
   render: h => h(App),
-  store, // 配置vuex的核心对象store
+  router, // 注册路由器  所有的组件都有一个$route/$router
 })

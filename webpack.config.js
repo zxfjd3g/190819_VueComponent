@@ -49,7 +49,13 @@ module.exports = {
           options: {
             presets: ['@babel/preset-env'], // 配置预设包(包含了多个ES语法解析的plugin包)
             plugins: [ // 配置预设包之外的插件包
-
+              [
+                "babel-plugin-component", 
+                {
+                  "libraryName": "mint-ui", // 针对mint-ui来实现按需引入打包
+                  "style": true  // 自动打包组件对应的样式
+                }
+              ]
             ]
           }
         }

@@ -10,7 +10,11 @@
 
 <script>
   export default {
-    
+    data () {
+      return {
+        count: 1
+      }
+    },
     computed: {
       evenOrOdd () {
         return this.count%2===1 ? '奇数' : '偶数'

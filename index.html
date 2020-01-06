@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <link rel="stylesheet" href="./static/css/base.css"> -->
   <link rel="stylesheet" href="/static/css/bootstrap.css">
@@ -11,6 +11,14 @@
       color: red !important;
     }
   </style>
+  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
   <title>vue component</title>
 
 </head>
