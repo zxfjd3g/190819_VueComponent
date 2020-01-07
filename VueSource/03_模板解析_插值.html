@@ -5,6 +5,22 @@
   <title>03_模板解析_表达式_vue</title>
 </head>
 <body>
+  <div id="test">
+    <p>{{name}}</p> <!-- textNode.textContent = name表达式的值 -->
+  </div>
 
+  <script src="./js/compile.js"></script>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <script>
+    const vm = new MVVM({
+      el: '#test',
+      data: {
+        name: 'tom'
+      }
+    })
+  
+  </script>
 </body>
 </html>
