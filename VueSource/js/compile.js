@@ -130,16 +130,23 @@ var compileUtil = {
   编译v-model
   */
   model: function (node, vm, exp) {
+    /* 
+    1. 实现初始化显示更新
+    2. 创建watcher对象用于更新显示
+    */
     this.bind(node, vm, exp, 'model');
 
     var me = this,
+    // 得到表达式对应的值
       val = this._getVMVal(vm, exp);
+      // 绑定input事件监听
     node.addEventListener('input', function (e) {
+      // 得到最新输入的值
       var newValue = e.target.value;
       if (val === newValue) {
         return;
       }
-
+      // 将最新输入的值保存到表达式对应的data中的属性上  ===> 数据绑定
       me._setVMVal(vm, exp, newValue);
       val = newValue;
     });
@@ -164,8 +171,10 @@ var compileUtil = {
 
     // 执行更新函数第一次更新节点 ==> 初始化显示
     updaterFn && updaterFn(node, this._getVMVal(vm, exp));
-
-    new Watcher(vm, exp, function (value, oldValue) {
+    
+    // 为当前表达式/节点创建一个对应的订阅者/watcher
+    new Watcher(vm, exp, function (value, oldValue) { // 用于更新节点的回调函数
+      // 更新对应的节点
       updaterFn && updaterFn(node, value, oldValue);
     });
   },

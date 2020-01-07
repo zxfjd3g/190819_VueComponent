@@ -13,6 +13,7 @@ function MVVM(options) {
     this._proxy(key);
   });
 
+  // 对data中所有层次属性实现劫持/监视
   observe(data, this);
 
   // 创建用于编译模板的对象

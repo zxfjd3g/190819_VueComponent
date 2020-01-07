@@ -5,5 +5,30 @@
   <title>07_数据双向绑定</title>
 </head>
 <body>
+  <div id="test">
+    <input type="text" v-model="msg">  
+    <!-- 
+      input.addEventListener('input', (event) => {
+        this._data.msg = event.target.value
+      }) 
+      1. 给标签绑定input监听
+      2. 在监听回调函数中读取输入的最新值, 保存到表达式对在data中对应的属性上
+    -->
+    <p>{{msg}}</p>
+  </div>
+  
+  <script src="./js/compile.js"></script>
+  <script src="./js/mvvm.js"></script>
+  <script src="./js/observer.js"></script>
+  <script src="./js/watcher.js"></script>
+  <script>
+    const vm = new MVVM({
+      el: '#test',
+      data: {
+        msg: 'abcd'
+      }
+    })
+  
+  </script>
 </body>
 </html>

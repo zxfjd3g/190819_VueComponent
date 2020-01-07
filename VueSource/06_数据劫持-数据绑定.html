@@ -12,9 +12,9 @@
     每个watcher都有一个对应的节点(将来需要更新)
     每个watcher都有一个用于更新节点的回调函数
   -->
-  <p>{{name}}</p>
-  <p v-text="name"></p>
-  <p v-text="wife.name"></p>
+  <p>{{name}}</p> <!-- w1 -->
+  <p v-text="name"></p> <!-- w2 -->
+  <p v-text="wife.name"></p> <!-- w3 -->
   <button v-on:click="update">更新</button>  
 </div>
 
@@ -26,16 +26,16 @@
   const vm = new MVVM({
     el: '#test',
     data: {
-      name: 'tom',
-      wife: {
-        name: 'Jerry',
-        age: 24
+      name: 'tom',  // d0
+      wife: { // d1
+        name: 'Jerry', // d2
+        age: 24 // d3
       }
     },
     methods: {
       update () {
-        this.name = 'jack'
-        this.wife.name = 'Rose'
+        this.name = 'jack'  // d0  ==> w1/w2
+        this.wife.name = 'Rose' // d2 ==> w3
       }
     }
   })
